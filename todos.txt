@@ -1,0 +1,17 @@
+creation de la structure de projet
+Configuration du fichier .env
+
+choix de la base de donnée
+creation des migrations
+Creation des modeles
+Creation des routes
+Creation des requests + Ressources
+Creations des Services + Controllers
+Creation des Guards, Middlware et pipes
+Gestion authentification USER et ADMIN
+Gestion des services d'envoi de mail
+Gestion des test
+Gestion des Erreurs / Logging
+Documentation
+
+
