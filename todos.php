@@ -8,11 +8,13 @@
  * -CREER UN SEUL SERVICE POUR LE CRUD DES WORKERS (app/Services/WorkerService.php)
  * - 
  */
-/*
-creation de la structure de projet
-Configuration du fichier .env
-choix de la base de donnée
-creation des migrations
+
+
+/* PROGRESSION
+creation de la structure de projet OK
+Configuration du fichier .env OK
+choix de la base de donnée OK
+creation des migrations OK
 Creation des modeles
 Creation des routes
 Creation des requests + Ressources
