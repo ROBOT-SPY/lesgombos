@@ -4,15 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Location extends Model
+class Activity extends Model
 {
     protected $fillable = [
-        'city',
-        'longitude',
-        'latitude',
+        'name',
     ];
+
     public function workers()
     {
-        return $this->hasMany(Worker::class);
+        return $this->hasMany(Location::class);
     }
 }

@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->string('city');
-            $table->string('longitude');
-            $table->string('latitude');
+            $table->string('name');
             $table->timestamps();
         });
     }
