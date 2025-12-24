@@ -11,6 +11,7 @@ class Location extends Model
         'longitude',
         'latitude',
     ];
+
     public function workers()
     {
         return $this->hasMany(Worker::class);

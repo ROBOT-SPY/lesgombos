@@ -20,6 +20,6 @@ class LocationResource extends JsonResource
             'longitude' => $this->longitude,
             'latitude' => $this->latitude,
         ];
-        
+
     }
 }

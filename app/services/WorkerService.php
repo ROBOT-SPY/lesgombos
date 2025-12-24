@@ -2,15 +2,17 @@
 
 namespace App\Services;
 
-use App\Models\Worker;
 use App\Http\Resources\WorkerResource;
+use App\Models\Worker;
 
 class WorkerService
 {
     public function create($data)
     {
         $model = Worker::create($data);
+
         return WorkerResource::make($model);
+
     }
 
     public function update(Worker $worker, $data)
@@ -20,6 +22,7 @@ class WorkerService
         if (count($data)) {
             $model->update($data);
         }
+
         return WorkerResource::make($model);
     }
 
@@ -31,12 +34,14 @@ class WorkerService
     public function findById($id)
     {
         $worker = Worker::find($id);
-        return WorkerResource::make($worker); 
+
+        return WorkerResource::make($worker);
     }
 
     public function getAll()
     {
         $workers = Worker::all();
+
         return WorkerResource::collection($workers);
     }
 }

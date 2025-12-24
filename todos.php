@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TODO
  * - CREER UN FICHIER .ENV A PARTIR DE ENV.EXAMPLE
@@ -8,7 +9,6 @@
  * -CREER UN SEUL SERVICE POUR LE CRUD DES WORKERS (app/Services/WorkerService.php)
  * -
  */
-
 
 /* PROGRESSION
 creation de la structure de projet OK

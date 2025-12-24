@@ -5,7 +5,6 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-
 class WorkerResource extends JsonResource
 {
     /**
@@ -19,7 +18,7 @@ class WorkerResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'lastname' => $this->lastname,
-            'contact' => $this->contact ,
+            'contact' => $this->contact,
             'email' => $this->email,
             'location_id' => $this->location_id,
             'activity_id' => $this->activity_id,

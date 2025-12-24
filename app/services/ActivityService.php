@@ -1,46 +1,49 @@
 <?php
 
 namespace App\Services;
+
 use App\Http\Resources\ActivityResource;
 use App\Models\Activity;
-use Illuminate\Notifications\Action;
 
-class ActivityService{
-  public function create($data){
-    $model=Activity::create($data);
-    return ActivityResource::make($model);
-  }
+class ActivityService
+{
+    public function create($data)
+    {
+        $model = Activity::create($data);
 
-
-  public function update(Activity $activity,$data){
-    $model=Activity::find($activity->id);
-    if(count($data)){
-
-        $model->update($data);
-
+        return ActivityResource::make($model);
     }
 
-    return ActivityResource::make($model);
-  }
+    public function update(Activity $activity, $data)
+    {
+        $model = Activity::find($activity->id);
+        if (count($data)) {
 
-  public function delete($activity){
-    //$activity=Activity::find($id);
+            $model->update($data);
 
-    return $activity->delete();
-  }
+        }
 
+        return ActivityResource::make($model);
+    }
 
-  public function findById($id){
-    $activity=Activity::find($id);
+    public function delete($activity)
+    {
+        // $activity=Activity::find($id);
 
-    return ActivityResource::make($activity);
-  }
+        return $activity->delete();
+    }
 
+    public function findById($id)
+    {
+        $activity = Activity::find($id);
 
-  public function getAll(){
-  $activities=Activity::all();
+        return ActivityResource::make($activity);
+    }
 
-  return ActivityResource::make($activities);
-  }
+    public function getAll()
+    {
+        $activities = Activity::all();
+
+        return ActivityResource::make($activities);
+    }
 }
-?>
