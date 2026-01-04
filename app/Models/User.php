@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -22,6 +24,8 @@ class User extends Authenticatable
         'lastname',
         'email',
         'password',
+        'two_factor_code',
+        'two_factor_expires_at',
     ];
 
     /**
@@ -46,4 +50,22 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function generateTwoFactorCode():void
+    {
+        //code to generate a random 6-character code with letters and numbers
+        $code = Str::random(6);
+        $this->two_factor_code = $code;
+        $this->two_factor_expires_at = Carbon::now()->addMinutes(5);
+        $this->save();
+    }
+
+    public function resetTwoFactorCode()
+    {
+        $this->two_factor_code = null;
+        $this->two_factor_expires_at = null;
+        $this->save();
+    }
+
+    
 }
