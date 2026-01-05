@@ -24,7 +24,9 @@ class AuthenticatedSessionController extends Controller
             return response()->json(['message' => __('Two-factor authentication is required.')], Response::HTTP_UNAUTHORIZED);
         }
         $user->generateTwoFactorCode();
-        Mail::to($user->email)->send(new TwoFactorCodeMail($user));
+        if(!app()->environment('local')) {
+            Mail::to($user->email)->send(new TwoFactorCodeMail($user));
+        }
         $user->session()->regenerate();
 
         return response()->json([
