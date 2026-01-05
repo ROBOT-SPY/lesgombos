@@ -49,7 +49,7 @@ class AuthenticatedSessionController extends Controller
             $user->two_factor_code !== $request->code ||
             $user->two_factor_expires_at->isPast()
         ) {
-            return response()->json(['message' => __('Invalid two-factor code.')], Response::HTTP_UNAUTHORIZED);
+            return response()->json(['message' => __('Invalid two-factor code')], Response::HTTP_UNAUTHORIZED);
         }
 
         $user->resetTwoFactorCode();
