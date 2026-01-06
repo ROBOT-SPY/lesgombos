@@ -9,25 +9,31 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TwoFactorCodeMail;
+use Illuminate\Http\JsonResponse;
+use Carbon\Carbon;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): Response
+    public function store(LoginRequest $request): JSONResponse
     {
         $request->authenticate();
 
         $user = Auth::user();
-        if ($user->two_factor_code && $user->two_factor_expires_at && $user->two_factor_expires_at->isFuture()) {
-            return response()->json(['message' => __('Two-factor authentication is required.')], Response::HTTP_UNAUTHORIZED);
+        if ($user->two_factor_code && $user->two_factor_expires_at && Carbon::now() < Carbon::parse($user->two_factor_expires_at)) {
+            return response()->json([
+                'message' => __('Two-factor authentication is required.'),
+                'user_id' => $user->id
+            ], Response::HTTP_UNAUTHORIZED);
         }
         $user->generateTwoFactorCode();
         if(!app()->environment('local')) {
             Mail::to($user->email)->send(new TwoFactorCodeMail($user));
         }
-        $user->session()->regenerate();
+        // $user->session()->regenerate();
 
         return response()->json([
             'message' => __('Two-factor code sent to your email.'),
@@ -36,7 +42,7 @@ class AuthenticatedSessionController extends Controller
 
     }
 
-    public function verifyTwoFactor(Request $request)
+    public function verifyTwoFactor(Request $request) : JSONResponse
     {
         $request->validate([
             'user_id' => 'required',
@@ -59,7 +65,7 @@ class AuthenticatedSessionController extends Controller
         return response()->json([
             'token' => $token,
             'user' => $user
-        ]);
+        ], Response::HTTP_OK);
     }
 
 

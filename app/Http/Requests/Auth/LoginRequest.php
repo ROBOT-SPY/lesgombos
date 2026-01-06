@@ -41,7 +41,8 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (!Auth::attempt($this->only('email', 'password'))) {
+        // Use a stateless authentication check for API flows so we don't create a session.
+        if (! Auth::guard('web')->once($this->only('email', 'password'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
