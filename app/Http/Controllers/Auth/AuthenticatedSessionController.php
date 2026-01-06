@@ -52,8 +52,8 @@ class AuthenticatedSessionController extends Controller
         $user = User::findOrFail($request->user_id);
 
         if (
-            $user->two_factor_code !== $request->code ||
-            $user->two_factor_expires_at->isPast()
+            $user->two_factor_code !== $request->code /*||
+            Carbon::now()->isAfter( Carbon::parse($user->two_factor_expires_at))*/
         ) {
             return response()->json(['message' => __('Invalid two-factor code')], Response::HTTP_UNAUTHORIZED);
         }
