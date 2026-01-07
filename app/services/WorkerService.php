@@ -40,7 +40,21 @@ class WorkerService
 
     public function getAll()
     {
-        $workers = Worker::all();
+        // $workers = Worker::all();
+        $workers = QueryBuilder::for(Worker::class)
+        ->allowedFilters([
+            'id',
+            'name',
+            'lastname',
+            'contact',
+            'email'
+        ])
+        ->allowedSorts(
+            'name',
+            'lastname'
+        )
+        ->paginate()
+        ->appends(request()->query());
 
         return WorkerResource::collection($workers);
     }
