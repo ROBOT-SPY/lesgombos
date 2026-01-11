@@ -21,19 +21,19 @@ class ActivityRequest extends FormRequest
      */
     public function rules(): array
     {
-       $rules= [
+        $rules = [
             //
-            'city'=>['name','string','unique:activities,city','max:50'],
+            'city' => ['name', 'string', 'unique:activities,city', 'max:50'],
 
         ];
 
-
-        if($this->method()==="PUT"){
-            $rules=array_merge($rules,[
-                'name'=>['sometimes','required','max:100','unique:activities,name'],
+        if ($this->method() === 'PUT') {
+            $rules = array_merge($rules, [
+                'name' => ['sometimes', 'required', 'max:100', 'unique:activities,name'],
 
             ]);
         }
+
         return $rules;
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ActivityRequest;
 use App\Services\ActivityService;
-use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
@@ -13,8 +12,9 @@ class ActivityController extends Controller
      */
     public function __construct(protected ActivityService $service)
     {
-        //throw new \Exception('Not implemented');
+        // throw new \Exception('Not implemented');
     }
+
     public function index()
     {
         return $this->service->getAll();
@@ -42,7 +42,7 @@ class ActivityController extends Controller
     public function update(ActivityRequest $request, string $id)
     {
         //
-        return $this->service->update($id,$request->validated());
+        return $this->service->update($id, $request->validated());
     }
 
     /**

@@ -2,24 +2,23 @@
 
 namespace App\Services;
 
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class SettingsService
 {
     /**
-     * 
-     * property : 
+     * property :
      * - data : array
      *      - name
      */
     public function createRole($data): void
     {
-       Role::create($data);
+        Role::create($data);
     }
 
     /**
-     * property : 
+     * property :
      * - data : array
      *      - name
      */
@@ -46,5 +45,4 @@ class SettingsService
         $permission = Permission::findById($permissionId);
         $permission->removeRole($role);
     }
-
 }

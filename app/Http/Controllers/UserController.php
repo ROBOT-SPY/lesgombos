@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\WorkerRequest;
-use App\Services\UserService;
 use App\Services\SettingsService;
+use App\Services\UserService;
 
 class WorkerController extends Controller
 {
     public function __construct(
         protected UserService $service,
         private SettingsService $settingsService
-        ) {}
+    ) {}
+
     public function index()
     {
         return $this->service->getAll();
@@ -40,7 +41,6 @@ class WorkerController extends Controller
     /**
      * SETTINGS
      */
-
     public function createPermissions()
     {
         return $this->settingsService->createPermissions();
@@ -65,5 +65,4 @@ class WorkerController extends Controller
     {
         return $this->settingsService->syncRoleToUser($roleIds);
     }
-
 }

@@ -16,7 +16,7 @@ Configuration du fichier .env OK
 choix de la base de donnée OK
 creation des migrations OK
 Creation des modeles OK
-Creation des routes 
+Creation des routes
 Creation des requests + Ressources OK
 Creations des Services + Controllers OK
 Creation des Guards, Middlware et pipes

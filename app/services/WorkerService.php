@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Http\Resources\WorkerResource;
 use App\Models\Worker;
-use Spatie\QueryBuilder\QueryBuilder;   
+use Spatie\QueryBuilder\QueryBuilder;
 
 class WorkerService
 {
@@ -43,19 +43,19 @@ class WorkerService
     {
         // $workers = Worker::all();
         $workers = QueryBuilder::for(Worker::class)
-        ->allowedFilters([
-            'id',
-            'name',
-            'lastname',
-            'contact',
-            'email'
-        ])
-        ->allowedSorts(
-            'name',
-            'lastname'
-        )
-        ->paginate()
-        ->appends(request()->query());
+            ->allowedFilters([
+                'id',
+                'name',
+                'lastname',
+                'contact',
+                'email',
+            ])
+            ->allowedSorts(
+                'name',
+                'lastname'
+            )
+            ->paginate()
+            ->appends(request()->query());
 
         return WorkerResource::collection($workers);
     }

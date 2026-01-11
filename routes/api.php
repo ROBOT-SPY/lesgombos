@@ -1,19 +1,18 @@
 <?php
+
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Route;
 
 /**
  * API Routes
  * All routes prefixed with /api/v1
  */
-
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
 
     Route::get('/user', function (Request $request) {
@@ -21,7 +20,7 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     })->name('user');
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->name('logout');
+        ->name('logout');
 });
 
 // Authentication Routes

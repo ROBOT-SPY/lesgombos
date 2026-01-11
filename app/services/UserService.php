@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Http\ResourcesUserResource;
 use App\Models\User;
 
 class UserService
@@ -10,6 +9,7 @@ class UserService
     public function create($data)
     {
         $model = User::create($data);
+
         /**
          * TODO: create permission
          * - assign initial permission to user/admin
@@ -45,19 +45,19 @@ class UserService
     {
         // $Users = User::all();
         $Users = QueryBuilder::for(User::class)
-        ->allowedFilters([
-            'id',
-            'name',
-            'lastname',
-            'contact',
-            'email'
-        ])
-        ->allowedSorts(
-            'name',
-            'lastname'
-        )
-        ->paginate()
-        ->appends(request()->query());
+            ->allowedFilters([
+                'id',
+                'name',
+                'lastname',
+                'contact',
+                'email',
+            ])
+            ->allowedSorts(
+                'name',
+                'lastname'
+            )
+            ->paginate()
+            ->appends(request()->query());
 
         return UserResource::collection($Users);
     }

@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Client\HttpClientException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Response;
 
@@ -25,37 +24,33 @@ class LocationRequest extends FormRequest
      */
     public function rules(): array
     {
-       $rules= [
+        $rules = [
             //
-            'city'=>['required','string','unique:locations,city','max:50'],
-            'long'=>['required','numeric'],
-            'lat'=>['required','numeric'],
+            'city' => ['required', 'string', 'unique:locations,city', 'max:50'],
+            'long' => ['required', 'numeric'],
+            'lat' => ['required', 'numeric'],
         ];
 
-
-        if($this->method()==="PUT"){
-            $rules=array_merge($rules,[
-                'city'=>['sometimes','required','max:100'],
-                'long'=>['sometimes','required','numeric'],
-                'lat'=>['sometimes','required','numeric'],
+        if ($this->method() === 'PUT') {
+            $rules = array_merge($rules, [
+                'city' => ['sometimes', 'required', 'max:100'],
+                'long' => ['sometimes', 'required', 'numeric'],
+                'lat' => ['sometimes', 'required', 'numeric'],
             ]);
         }
+
         return $rules;
 
     }
 
-
     public function failedValidation(Validator $validator)
     {
-     throw new HttpResponseException(
+        throw new HttpResponseException(
+            response()->json([
+                'errors' => $validator->errors(),
 
-        response()->json([
-            'errors'=>$validator->errors(),
-
-        ],Response::HTTP_BAD_REQUEST)
-    );
+            ], Response::HTTP_BAD_REQUEST)
+        );
 
     }
-
-
 }
