@@ -17,7 +17,6 @@ class LocationController extends Controller
     }
     public function index()
     {
-        //
         return $this->service->getAll();
     }
 
@@ -27,7 +26,6 @@ class LocationController extends Controller
      */
     public function store(LocationRequest $request)
     {
-        //
         return $this->service->create($request->validated());
     }
 
@@ -44,7 +42,6 @@ class LocationController extends Controller
      */
     public function update(LocationRequest $request, string $id)
     {
-        //
         return $this->service->update($id,$request->validated());
 
 
@@ -55,8 +52,6 @@ class LocationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-
         return $this->service->delete($id);
     }
 }

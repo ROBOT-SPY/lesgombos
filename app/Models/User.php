@@ -9,11 +9,14 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable, HasApiTokens, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -51,6 +54,17 @@ class User extends Authenticatable
         'two_factor_expires_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function syncRoleToUser($roleIds): void
+    {
+        $this->assignRole($roleIds);
+    }
+
+    public function getUserPermissions() : \Illuminate\Support\Collection
+    {
+        $permissions = $this->getAllPermissions();
+        return $permissions;
+    }
 
     public function generateTwoFactorCode():void
     {

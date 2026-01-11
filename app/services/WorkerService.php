@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Resources\WorkerResource;
 use App\Models\Worker;
+use Spatie\QueryBuilder\QueryBuilder;   
 
 class WorkerService
 {
