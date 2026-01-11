@@ -9,18 +9,23 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 
-//Rewrite routes to use sanctum for api authentication
+/**
+ * API Routes
+ * All routes prefixed with /api/v1
+ */
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
+Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
 
     Route::get('/user', function (Request $request) {
         return $request->user();
     })->name('user');
+
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout');
 });
 
-Route::middleware('guest')->group(function () {
+// Authentication Routes
+Route::middleware('guest')->prefix('v1')->group(function () {
     Route::post('/register', [RegisteredUserController::class, 'store'])
         ->name('register');
 
