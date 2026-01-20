@@ -25,4 +25,12 @@ Gestion des services d'envoi de mail
 Gestion des test
 Gestion des Erreurs / Logging
 Documentation
+
+
+USER
+ - permission : alluserpermissions, createworker, readworker, updateworker
+ADMIN
+ - permission : alluserpermissions, createworker, readadmin, updateadmin, deleteadmin
+SUPER ADMIN
+ - permission : allpermissions  
 */

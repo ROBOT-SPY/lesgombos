@@ -61,9 +61,25 @@ class User extends Authenticatable
     public function getUserPermissions(): \Illuminate\Support\Collection
     {
         $permissions = $this->getAllPermissions();
-
         return $permissions;
     }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->hasRole(config('user-roles.super_admin'));
+    }
+
+    public function isAdmin(): bool
+    {
+        
+        return $this->hasRole(config('user-roles.admin'));
+    }
+
+    public function isUser(): bool
+    {
+        return $this->hasRole(config('user-roles.user'));
+    }
+    
 
     public function generateTwoFactorCode(): void
     {

@@ -3,17 +3,19 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Http\Resources\UserResource;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\Permission\Models\Role;
 
 class UserService
 {
     public function create($data)
     {
         $model = User::create($data);
+        
+        // $roleId = Role::where('name', config("user-roles.user"))->first()->id;
+        // $model->assignRole($roleId);
 
-        /**
-         * TODO: create permission
-         * - assign initial permission to user/admin
-         */
         return UserResource::make($model);
 
     }
