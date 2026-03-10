@@ -11,6 +11,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Http\Resources\UserResource;
 
 class RegisteredUserController extends Controller
 {
@@ -23,12 +24,14 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'lastname' => $request->lastname,
             'email' => $request->email,
             'password' => Hash::make($request->string('password')),
         ]);
@@ -39,6 +42,7 @@ class RegisteredUserController extends Controller
 
         return response()->json([
             'message' => __('User registered successfully.'),
+            'data'=> new UserResource($user)
         ], Response::HTTP_CREATED);
     }
 }

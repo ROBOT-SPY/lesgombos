@@ -32,5 +32,5 @@ USER
 ADMIN
  - permission : alluserpermissions, createworker, readadmin, updateadmin, deleteadmin
 SUPER ADMIN
- - permission : allpermissions  
+ - permission : allpermissions
 */

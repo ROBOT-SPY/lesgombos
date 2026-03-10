@@ -9,7 +9,7 @@ class SettingsService
 {
     /**
      * property :
-     * - data : array 
+     * - data : array
      *      - name
      */
     public function createRole($data): void

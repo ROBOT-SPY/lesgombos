@@ -2,17 +2,17 @@
 
 namespace App\Services;
 
-use App\Models\User;
 use App\Http\Resources\UserResource;
-use Spatie\QueryBuilder\QueryBuilder;
+use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class UserService
 {
     public function create($data)
     {
         $model = User::create($data);
-        
+
         // $roleId = Role::where('name', config("user-roles.user"))->first()->id;
         // $model->assignRole($roleId);
 

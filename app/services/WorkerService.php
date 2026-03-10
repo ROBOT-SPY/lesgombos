@@ -10,7 +10,8 @@ class WorkerService
 {
     public function create($data)
     {
-        $model = Worker::create($data);        
+        $model = Worker::create($data);
+
         return WorkerResource::make($model);
 
     }

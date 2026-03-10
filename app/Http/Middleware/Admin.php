@@ -15,10 +15,11 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        //check if user is admin
-        if (auth()->user()->isAdmin() && !auth()->user()->isSuperAdmin() ) {
+        // check if user is admin
+        if (auth()->user()->isAdmin() && ! auth()->user()->isSuperAdmin()) {
             abort(403, 'Unauthorized action.');
         }
+
         return $next($request);
     }
 }

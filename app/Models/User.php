@@ -61,6 +61,7 @@ class User extends Authenticatable
     public function getUserPermissions(): \Illuminate\Support\Collection
     {
         $permissions = $this->getAllPermissions();
+
         return $permissions;
     }
 
@@ -71,7 +72,7 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        
+
         return $this->hasRole(config('user-roles.admin'));
     }
 
@@ -79,7 +80,6 @@ class User extends Authenticatable
     {
         return $this->hasRole(config('user-roles.user'));
     }
-    
 
     public function generateTwoFactorCode(): void
     {
